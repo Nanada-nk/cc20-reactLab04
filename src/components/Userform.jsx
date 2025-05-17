@@ -133,47 +133,71 @@ function Userform({ is_update_form }) {
   };
 
   return is_update_form ? (
-    <div className="flex">
-      <h2>Edit product Form</h2>
-      <form>
-        <label>
-          title:
-          <input
-            type="text"
-            name="title"
-            value={formData?.title}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          price:
-          <input
-            type="number"
-            name="price"
-            value={formData?.price}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          description:
-          <input
-            type="text"
-            name="description"
-            value={formData?.description}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          image:
-          <input
-            type="file"
-            name="image"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              setFormData({ ...formData, image: file });
-            }}
-          />
-        </label>
+    <div className="bg-indigo-50 p-4">
+      <h2 className="mb-4 font-bold text-xl">Edit product Form</h2>
+      <form className="flex justify-center items-center text-lg">
+        <div className="w-80 mr-4">
+          <label>
+            Title:
+            <input
+              type="text"
+              name="title"
+              className="input"
+              value={formData?.title}
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              name="price"
+              className="input"
+              value={formData?.price}
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Description:
+            <input
+              type="text"
+              name="description"
+              className="input"
+              value={formData?.description}
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Image:
+            <input
+              type="file"
+              name="image"
+              className="input p-2"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setFormData({ ...formData, image: file });
+              }}
+            />
+          </label>
+
+          <label>
+            Category:
+            <select
+              name="category"
+              value={formData?.category}
+              className="select"
+              onChange={hdlChange}>
+              <option value="" disabled>
+                Select type
+              </option>
+              {category.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.catName}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         {formData.image && (
           <img
             src={
@@ -182,78 +206,104 @@ function Userform({ is_update_form }) {
                 : URL.createObjectURL(formData.image)
             }
             alt="preview"
-            width="150"
+            className="w-xs rounded-2xl shadow-xl"
           />
         )}
-        <label>
-          category:
-          <select
-            name="category"
-            value={formData?.category}
-            onChange={hdlChange}>
-            <option value="" disabled>
-              Select type
-            </option>
-            {category.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.catName}
-              </option>
-            ))}
-          </select>
-          <p>คุณเลือก: {formData?.category}</p>
-        </label>
       </form>
-
-      {/* การใช้งานแบบ function dynamic method */}
-      <button onClick={(e) => hdlSubmitDynamic(e, { method: "DELETE" })}>
-        Delete
-      </button>
-      <button onClick={(e) => hdlSubmitDynamic(e, { method: "PUT" })}>
-        UPDATE
-      </button>
+      <div className="flex justify-center mt-4">
+        {/* การใช้งานแบบ function dynamic method */}
+        <button
+          className="btn btn-outline btn-primary text-purple-900 mr-2"
+          onClick={(e) => hdlSubmitDynamic(e, { method: "DELETE" })}>
+          DELETE
+        </button>
+        <button
+          className="btn btn-outline btn-primary text-purple-900"
+          onClick={(e) => hdlSubmitDynamic(e, { method: "PUT" })}>
+          UPDATE
+        </button>
+      </div>
     </div>
   ) : (
-    <div className="flex">
-      <h2>Add new product Form</h2>
-      <form>
-        <label>
-          title:
-          <input
-            type="text"
-            name="title"
-            value={formData?.title}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          price:
-          <input
-            type="number"
-            name="price"
-            value={formData?.price}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          description:
-          <input
-            type="text"
-            name="description"
-            value={formData?.description}
-            onChange={hdlChange}
-          />
-        </label>
-        <label>
-          image:
-          <input
-            type="file"
-            name="image"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              setFormData({ ...formData, image: file });
-            }}
-          />
-        </label>
+    <div className="p-4">
+      <h2 className="mb-4 font-bold text-xl">Add new product Form</h2>
+
+      <form className="flex justify-center items-center text-lg">
+        <div className="w-80 mr-4">
+          <label>
+            Title:
+            <input
+              type="text"
+              name="title"
+              value={formData?.title}
+              className="input"
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Price:
+            <input
+              type="number"
+              name="price"
+              className="input"
+              value={formData?.price}
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Description:
+            <input
+              type="text"
+              name="description"
+              className="input"
+              value={formData?.description}
+              onChange={hdlChange}
+            />
+          </label>
+          <label>
+            Image:
+            <input
+              type="file"
+              name="image"
+              className="input p-2"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setFormData({ ...formData, image: file });
+              }}
+            />
+          </label>
+          <label>
+            Category:
+            <select
+              name="category"
+              className="select"
+              value={formData?.category}
+              onChange={hdlChange}>
+              <option value="" disabled>
+                Select type
+              </option>
+              {category.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.catName}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <div className="mt-4 flex justify-center">
+            {/* การใช้งานแบบ function fix method */}
+            <button
+              className="btn btn-outline btn-primary px-10 text-purple-900"
+              onClick={(e) => hdlSubmit(e)}>
+              SUBMIT
+            </button>
+            {/* การใช้งานแบบ function dynamic method */}
+            {/* <button onClick={(e) => hdlSubmitDynamic(e, { method: "POST" })}>
+          Submit
+        </button> */}
+          </div>
+        </div>
+
         {formData.image && (
           <img
             src={
@@ -262,33 +312,9 @@ function Userform({ is_update_form }) {
                 : URL.createObjectURL(formData.image)
             }
             alt="preview"
-            width="150"
+            className="w-xs rounded-2xl shadow-xl"
           />
         )}
-        <label>
-          category:
-          <select
-            name="category"
-            value={formData?.category}
-            onChange={hdlChange}>
-            <option value="" disabled>
-              Select type
-            </option>
-            {category.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.catName}
-              </option>
-            ))}
-          </select>
-          <p>คุณเลือก: {formData?.category}</p>
-        </label>
-
-        {/* การใช้งานแบบ function fix method */}
-        <button onClick={(e) => hdlSubmit(e)}>Submit</button>
-        {/* การใช้งานแบบ function dynamic method */}
-        {/* <button onClick={(e) => hdlSubmitDynamic(e, { method: "POST" })}>
-          Submit
-        </button> */}
       </form>
     </div>
   );
