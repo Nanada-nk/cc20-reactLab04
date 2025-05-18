@@ -50,6 +50,7 @@ function Userform({ is_update_form }) {
     })
       .then((res) => res.json())
       .then((json) => console.log(json));
+      alert("POST Success!");
   };
 
   //ตัวอย่าง function submit API แบบ dynamic method POST,PUT, DELETE
