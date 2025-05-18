@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://nanada-nk.github.io/cc20-reactLab04/",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
